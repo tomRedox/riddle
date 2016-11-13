@@ -119,7 +119,7 @@ web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
 //var balance = web3.eth.getBalance(coinbase);
 //console.log(balance.toString(10));
 
-var contractAddress = "0xF9058D9B0a6b51eF42829567AA82E1ebcb9F5737"; //"0x6149D50AEde716aecac99FBECA8736e8974d8879";
+var contractAddress = "0xc3C041F5B59639c4D61909609197F2206e8CFe23"; //"0x6149D50AEde716aecac99FBECA8736e8974d8879";
 
 
 
@@ -172,21 +172,41 @@ setUpFilter(contract);
 var result = contract.get_question.call();
 console.log(result);
 
+var tx = contract.set_question.sendTransaction(
+    "what is the meaning of life",
+    "42",
+    {
+        //value: 5,
+        to: contractAddress,
+        from: web3.eth.accounts[0],//"0x9A436B996Ae7fE9398Add9DDFc0d5e60ba8A5056",//
+        //from: "0x9A436B996Ae7fE9398Add9DDFc0d5e60ba8A5056",
+        gas: 2000000,
+        // data: [ "so long and",
+        //   "thanks for all the fish"]
+    }/*,
+     function(err, address) {
+     if (err) {
+     console.log("Failure callback!");
+     console.error(err);
+     } else {
+     console.log("Success callback - Address: " + address);
+     }
+     }*/);
 
 var result1 = contract.get_reward.call();
 console.log(result1);
 
-var tx = contract.set_question.sendTransaction(
-    "so long and",
-    "thanks for all the fish",
+var tx = contract.check_answer.sendTransaction(
+    "42",
     {
-        //value: 15,
-        //to: contractAddress,
+        value: 5,
+        to: contractAddress,
         from: web3.eth.accounts[0],//"0x9A436B996Ae7fE9398Add9DDFc0d5e60ba8A5056",//
-        //gas: 2000000,
+        //from: "0x9A436B996Ae7fE9398Add9DDFc0d5e60ba8A5056",
+        gas: 2000000,
         // data: [ "so long and",
         //   "thanks for all the fish"]
-    },
+    }/*,
     function(err, address) {
         if (err) {
             console.log("Failure callback!");
@@ -194,7 +214,7 @@ var tx = contract.set_question.sendTransaction(
         } else {
             console.log("Success callback - Address: " + address);
         }
-    });
+    }*/);
 
 console.log("Transaction ID is ",tx);
 
