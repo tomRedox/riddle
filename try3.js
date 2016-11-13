@@ -108,7 +108,7 @@ var abiArray = [
 
 
 
-var Web3 = require('web3')
+var Web3 = require('web3');
 var web3 = new Web3();
 
 web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
@@ -133,7 +133,7 @@ function setUpFilter(contract){
 
 var handlePrintEvent = function (error,result){
     if(!error) {
-        console.log(result);
+        console.log("Print event: " + result);
         //var orderAddress = '0x' + result.data.slice(26,66);
         //console.log(orderAddress);
         //var order = orderContract.at(orderAddress);
@@ -144,12 +144,12 @@ var handlePrintEvent = function (error,result){
         console.error(new Date() + " " + error);
 
     }
-}
+};
 
 
 var handlePrintIntegerEvent = function (error,result){
     if(!error) {
-        console.log(result);
+        console.log("PrintInteger event: " + result);
         //var orderAddress = '0x' + result.data.slice(26,66);
         //console.log(orderAddress);
         //var order = orderContract.at(orderAddress);
@@ -160,7 +160,7 @@ var handlePrintIntegerEvent = function (error,result){
         console.error(new Date() + " " + error);
 
     }
-}
+};
 
 
 
@@ -173,7 +173,7 @@ var result = contract.get_question.call();
 console.log(result);
 
 
-var result = contract.get_reward.call();
+var result1 = contract.get_reward.call();
 console.log(result);
 
 var tx = contract.set_question.sendTransaction(
@@ -198,8 +198,10 @@ var tx = contract.set_question.sendTransaction(
 
 console.log("Transaction ID is ",tx);
 
-var result = contract.get_reward.call();
+var result2 = contract.get_reward.call();
 console.log(result);
 
-var result = contract.get_question.call();
+var result3 = contract.get_question.call();
 console.log(result);
+
+console.log("finished");
