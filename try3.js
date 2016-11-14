@@ -1,4 +1,5 @@
-
+// Our final solution that successfully interacts with our
+// pre-deployed riddle smart contract.
 
 var abiArray = [
     {
@@ -133,7 +134,7 @@ function setUpFilter(contract){
 
 var handlePrintEvent = function (error,result){
     if(!error) {
-        console.log("Print event: " + result);
+        console.log("Print event: " + result.toString());
         //var orderAddress = '0x' + result.data.slice(26,66);
         //console.log(orderAddress);
         //var order = orderContract.at(orderAddress);
@@ -149,7 +150,7 @@ var handlePrintEvent = function (error,result){
 
 var handlePrintIntegerEvent = function (error,result){
     if(!error) {
-        console.log("PrintInteger event: " + result);
+        console.log("PrintInteger event: " + result.toString());
         //var orderAddress = '0x' + result.data.slice(26,66);
         //console.log(orderAddress);
         //var order = orderContract.at(orderAddress);
@@ -163,7 +164,9 @@ var handlePrintIntegerEvent = function (error,result){
 };
 
 
+exports.checkAnswer = function checkAnswer(answer, amountInEth, fromAccount) {
 
+};
 
 var contract = web3.eth.contract(abiArray).at(contractAddress);
 
@@ -173,8 +176,8 @@ var result = contract.get_question.call();
 console.log(result);
 
 var tx = contract.set_question.sendTransaction(
-    "what is the meaning of life",
-    "42",
+    "so long and?",
+    "thanks for all the fish",
     {
         //value: 5,
         to: contractAddress,
@@ -197,12 +200,12 @@ var result1 = contract.get_reward.call();
 console.log(result1);
 
 var tx = contract.check_answer.sendTransaction(
-    "42",
+    "cheese",
     {
-        value: 5,
+        value: 5000000000000000000, // this is in wei, add 18 zeros for eth,
         to: contractAddress,
-        from: web3.eth.accounts[0],//"0x9A436B996Ae7fE9398Add9DDFc0d5e60ba8A5056",//
-        //from: "0x9A436B996Ae7fE9398Add9DDFc0d5e60ba8A5056",
+        //from: web3.eth.accounts[0],//"0x9A436B996Ae7fE9398Add9DDFc0d5e60ba8A5056",//
+        from: "0x9A436B996Ae7fE9398Add9DDFc0d5e60ba8A5056",
         gas: 2000000,
         // data: [ "so long and",
         //   "thanks for all the fish"]

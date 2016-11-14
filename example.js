@@ -1,3 +1,7 @@
+// Example of how to listen to events - not actually part of our code.
+// Creates a new contract each time rather than reusing the exsiting one.
+// Relies on a defs.json file that isn't present in this repo
+
 var web3 = require('web3');
 var defs = require('./Defs.json');
 

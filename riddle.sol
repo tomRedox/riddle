@@ -1,3 +1,5 @@
+// Our riddle smart contract
+
 pragma solidity ^0.4.2;
 contract Riddle {
 

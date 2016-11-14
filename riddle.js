@@ -1,3 +1,9 @@
+// Our first try at talking to the riddle code on the blockchain
+// from JS.  This example creates and deploys our smart contract
+// each time, rather than using an existing instance of the smart
+// contract.  See try3.js for the final code which reuses the
+// existing smart contract.
+
 var Web3 = require('web3');
 if (typeof web3 !== 'undefined') {
     web3 = new Web3(web3.currentProvider);
